@@ -1,1 +1,1 @@
-declare module "sast"
+declare module "sast";
