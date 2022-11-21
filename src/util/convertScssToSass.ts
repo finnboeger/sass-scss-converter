@@ -3,7 +3,7 @@ import { removeSemicolon } from '@/util/removeSemicolon';
 import { interpolationHack } from '@/util/interpolationHack';
 import { formatScss } from '@/util/formatScss';
 import { removeTrailingSpacesForEachLine } from '@/util/removeTrailingSpacesForEachLine';
-import { fixIdentation } from '@/util/fixIdentation';
+import { fixIndentation } from '@/util/fixIndentation';
 
 let sast: any;
 
@@ -17,7 +17,7 @@ export async function convertScssToSass(scssStr: string): Promise<string> {
 
   traverseAst(tree, removeSemicolon);
   traverseAst(tree, interpolationHack);
-  traverseAst(tree, fixIdentation);
+  traverseAst(tree, fixIndentation);
   traverseAst(tree, (node: any) => {
     // eslint-disable-next-line no-param-reassign
     node.type = node.type === 'block' ? '_block' : node.type;
