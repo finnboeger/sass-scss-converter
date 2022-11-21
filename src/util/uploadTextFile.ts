@@ -7,6 +7,7 @@ export async function uploadTextFile() {
       const reader = new FileReader();
       reader.readAsText(file, "UTF-8");
       reader.onload = (readerEvent) => {
+        // tslint:disable-next-line:no-console
         console.log((readerEvent.target as any).result);
         res({
           name: file.name.substring(0, file.name.lastIndexOf(".")),

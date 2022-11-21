@@ -46,7 +46,7 @@ export function sassMixinIncludeHack(child: any) {
         value: " ",
       },
       // eslint-disable-next-line no-shadow
-      ...((otherChildren || []).flatMap((child: any) => child.children || []) || []),
+      ...((otherChildren || []).flatMap((c: any) => c.children || []) || []),
     ];
   }
 }
