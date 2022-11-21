@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
