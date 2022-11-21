@@ -12,7 +12,8 @@
         "build": "tsc",
         "test": "npm run build && ts-mocha --paths --type-check -p tsconfig.json tests/**/*.spec.ts",
         "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "tslint -p tsconfig.json"
+        "lint": "tslint -p tsconfig.json",
+        "prepare": "npm run build"
     },
     "repository": {
         "type": "git",
