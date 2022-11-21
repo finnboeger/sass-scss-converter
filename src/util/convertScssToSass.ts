@@ -1,9 +1,9 @@
-import { traverseAst } from "@/util/traverseAst";
-import { removeSemicolon } from "@/util/removeSemicolon";
-import { interpolationHack } from "@/util/interpolationHack";
-import { formatScss } from "@/util/formatScss";
-import { removeTrailingSpacesForEachLine } from "@/util/removeTrailingSpacesForEachLine";
-import { fixIndentation } from "@/util/fixIndentation";
+import { traverseAst } from "./traverseAst";
+import { removeSemicolon } from "./removeSemicolon";
+import { interpolationHack } from "./interpolationHack";
+import { formatScss } from "./formatScss";
+import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
+import { fixIndentation } from "./fixIndentation";
 
 let sast: any;
 

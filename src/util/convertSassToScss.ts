@@ -1,10 +1,10 @@
-import { traverseAst } from "@/util/traverseAst";
-import { addSemicolon } from "@/util/addSemicolon";
-import { formatScss } from "@/util/formatScss";
-import { sassMixinIncludeHack } from "@/util/sassMixinIncludeHack";
-import { sassMixinDefinitionHack } from "@/util/sassMixinDefinitionHack";
-import { interpolationHack } from "@/util/interpolationHack";
-import { removeTrailingSpacesForEachLine } from "@/util/removeTrailingSpacesForEachLine";
+import { traverseAst } from "./traverseAst";
+import { addSemicolon } from "./addSemicolon";
+import { formatScss } from "./formatScss";
+import { sassMixinIncludeHack } from "./sassMixinIncludeHack";
+import { sassMixinDefinitionHack } from "./sassMixinDefinitionHack";
+import { interpolationHack } from "./interpolationHack";
+import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
 
 let sast: any;
 

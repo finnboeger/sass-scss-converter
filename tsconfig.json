@@ -8,17 +8,11 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": ".",
     "types": [
       "node",
       "mocha",
       "chai"
     ],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "lib": [
       "esnext",
       "dom",
