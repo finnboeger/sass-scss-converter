@@ -1,14 +1,12 @@
-# Online Sass-to-SCSS Converter [Beta]
+# Sass-to-SCSS Conversion Library
+
+Extracted from https://github.com/ManuelSch/sass-scss-converter
 
 A small online tool that allows you to convert Sass (indented syntax) to SCSS (CSS-like syntax) and vice versa.
 
-### Visit the web app: https://sass-scss-converter.netlify.app
+### Also available as web app: https://sass-scss-converter.netlify.app
 
 <br/>
-
-<a href="https://sass-scss-converter.netlify.app" align="center">
-  <img src="./res/screenshot.png"/>
-</a>
 
 ## Keywords:
 Convert Sass to SCSS, Convert SCSS to Sass
