@@ -2,18 +2,16 @@
     "name": "sass-scss-converter",
     "version": "0.1.0",
     "license": "MIT",
-    "types": "./index.d.ts",
-    "main": "./dist/index.cjs.js",
-    "module": "./dist/index.es.js",
-    "unpkg": "./dist/index.standalone.js",
-    "jsdelivr": "./dist/index.standalone.js",
+    "types": "./lib/index.d.ts",
+    "main": "./lib/index.js",
     "source": "./src/index.ts",
     "scripts": {
         "build": "tsc",
         "test": "npm run build && ts-mocha --paths --type-check -p tsconfig.json tests/**/*.spec.ts",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "tslint -p tsconfig.json",
-        "prepare": "npm run build"
+        "prepare": "npm run build",
+        "prepublishOnly" : "npm test && npm run lint"
     },
     "repository": {
         "type": "git",
