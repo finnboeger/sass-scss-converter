@@ -1,20 +1,24 @@
 // + to @include hack:
-export function sassMixinIncludeHack(child: any) {
+import {ASTInternalNode, ASTNode} from "sast";
+
+export function sassMixinIncludeHack(child: ASTNode) {
   if (child.type === "include" && child.children) {
     const [firstChild, ...otherChildren] = child.children;
-    if (firstChild.value === "+") {
-      firstChild.type = "atkeyword";
-      delete firstChild.value;
-      firstChild.children = [
-        {
-          type: "ident",
-          value: "include",
-        },
-      ];
+    if ("value" in firstChild && firstChild.value === "+") {
+      const newFirstChild: ASTInternalNode = {
+        type: "atkeyword",
+        position: firstChild.position,
+        children: [
+          {
+            type: "ident",
+            value: "include",
+          },
+        ],
+      }
 
       // eslint-disable-next-line no-param-reassign
       child.children = [
-        firstChild,
+        newFirstChild,
         {
           type: "space",
           value: " ",
@@ -22,25 +26,27 @@ export function sassMixinIncludeHack(child: any) {
         ...otherChildren,
       ];
     }
-  } else if (child.type === "selector" && child.children && child.children[0] && child.children[0].value === "+") {
+  } else if (child.type === "selector" && child.children && child.children[0] && "value" in child.children[0] && child.children[0].value === "+") {
     // fix for top-level @include's:
 
     const [firstChild, ...otherChildren] = child.children;
     // eslint-disable-next-line no-param-reassign
     child.type = "include";
 
-    delete firstChild.value;
-    firstChild.type = "atkeyword";
-    firstChild.children = [
-      {
-        type: "ident",
-        value: "include",
-      },
-    ];
+    const newFirstChild: ASTInternalNode = {
+      type: "atkeyword",
+      position: firstChild.position,
+      children: [
+        {
+          type: "ident",
+          value: "include",
+        },
+      ],
+    }
 
     // eslint-disable-next-line no-param-reassign
     child.children = [
-      firstChild,
+      newFirstChild,
       {
         type: "space",
         value: " ",

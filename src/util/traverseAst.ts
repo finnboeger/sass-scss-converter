@@ -1,6 +1,8 @@
-export function traverseAst(root: any, forEveryNode: (child: any) => void) {
+import { ASTNode } from "sast";
+
+export function traverseAst(root: ASTNode, forEveryNode: (child: ASTNode) => void) {
   forEveryNode(root);
-  if (root && root.children && root.children.length > 0) {
+  if ("children" in root && root.children.length > 0) {
     root.children.forEach((child: any) => traverseAst(child, forEveryNode));
   }
 }

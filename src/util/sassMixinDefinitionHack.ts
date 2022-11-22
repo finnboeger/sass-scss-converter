@@ -1,20 +1,24 @@
 // = to @mixin hack:
-export function sassMixinDefinitionHack(child: any) {
+import {ASTInternalNode, ASTLeafNode, ASTNode} from "sast";
+
+export function sassMixinDefinitionHack(child: ASTNode) {
   if (child.type === "mixin" && child.children) {
     const [firstChild, ...otherChildren] = child.children;
-    if (firstChild.value === "=") {
-      firstChild.type = "atkeyword";
-      delete firstChild.value;
-      firstChild.children = [
-        {
-          type: "ident",
-          value: "mixin",
-        },
-      ];
+    if ("value" in firstChild && firstChild.value === "=") {
+      const newFirstChild: ASTInternalNode = {
+        type: "atkeyword",
+        position: firstChild.position,
+        children: [
+          {
+            type: "ident",
+            value: "mixin",
+          },
+        ],
+      }
 
       // eslint-disable-next-line no-param-reassign
       child.children = [
-        firstChild,
+        newFirstChild,
         {
           type: "space",
           value: " ",

@@ -1,8 +1,9 @@
-export function addSemicolon(child: any) {
+import { ASTNode } from "sast";
+
+export function addSemicolon(child: ASTNode) {
   if (child.type === "atrule") {
     child.children.push({
       type: "declarationDelimiter",
-      position: {},
       value: "\n",
     });
   }
