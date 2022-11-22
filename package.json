@@ -11,7 +11,7 @@
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "tslint -p tsconfig.json",
         "prepare": "npm run build",
-        "prepublishOnly" : "npm test && npm run lint"
+        "prepublishOnly": "npm test && npm run lint"
     },
     "repository": {
         "type": "git",
@@ -26,6 +26,7 @@
     "devDependencies": {
         "@types/chai": "^4.2.11",
         "@types/mocha": "^5.2.4",
+        "@types/unist": "^2.0.6",
         "@typescript-eslint/eslint-plugin": "^2.33.0",
         "@typescript-eslint/parser": "^2.33.0",
         "chai": "^4.1.2",
