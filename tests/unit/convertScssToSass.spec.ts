@@ -1,8 +1,8 @@
-import { expect } from 'chai';
-import {convertSassToScss, convertScssToSass} from '../../src';
+import { expect } from "chai";
+import { convertSassToScss, convertScssToSass } from "../../src";
 
-describe('convertScssToSass.ts', () => {
-  it('@import - should remove semicolon', async () => {
+describe("convertScssToSass.ts", () => {
+  it("@import - should remove semicolon", async () => {
     const input = '@import "../styles/imports";';
     const expected = '@import "../styles/imports"';
 
@@ -10,15 +10,15 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('$variable definition - should remove semicolon', async () => {
-    const input = '$col-primary: #f39900;';
-    const expected = '$col-primary: #f39900';
+  it("$variable definition - should remove semicolon", async () => {
+    const input = "$col-primary: #f39900;";
+    const expected = "$col-primary: #f39900";
 
     const result = await convertScssToSass(input);
     expect(result).to.equal(expected);
   });
 
-  it('$variable usage', async () => {
+  it("$variable usage", async () => {
     const input = `
 .item {
   color: $col-primary;
@@ -32,7 +32,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('=mixin() definition', async () => {
+  it("=mixin() definition", async () => {
     const input = `
 @mixin center_horizontal() {
   display: none;
@@ -46,7 +46,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('=mixin() usage', async () => {
+  it("=mixin() usage", async () => {
     const input = `
 .container {
   @include center_horizontal();
@@ -60,7 +60,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('interpolation usage', async () => {
+  it("interpolation usage", async () => {
     const input = `
 @mixin corner-icon($name) {
   .icon-#{$name} {
@@ -77,7 +77,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('multiple indention levels', async () => {
+  it("multiple indention levels", async () => {
     const input = `
 .container {
   border: none;
@@ -96,7 +96,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('messed-up input formatting #1', async () => {
+  it("messed-up input formatting #1", async () => {
     const input = `
 .aaaa {
     .bbbb {
@@ -118,7 +118,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('messed-up input formatting #2', async () => {
+  it("messed-up input formatting #2", async () => {
     const input = `
 .aaaa {
     .bbbb {
@@ -142,7 +142,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('if, else-if', async () => {
+  it("if, else-if", async () => {
     const input = `
 @mixin centered($horizontal: true, $vertical: true) {
   @if ($horizontal and $vertical) {
@@ -154,7 +154,7 @@ describe('convertScssToSass.ts', () => {
     top: 0;
   }
 }
-`.replace('}', '}\n');
+`.replace("}", "}\n");
     const expected = `
 @mixin centered($horizontal: true, $vertical: true)
   @if ($horizontal and $vertical)
@@ -168,7 +168,7 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-  it('if, else-if #2', async () => {
+  it("if, else-if #2", async () => {
     const input = `
 @mixin centered($horizontal: true, $vertical: true) {
   position: absolute;
@@ -184,7 +184,7 @@ describe('convertScssToSass.ts', () => {
     transform: translate(0, -50%);
   }
 }
-`.replace('}', '}\n');
+`.replace("}", "}\n");
     const expected = `
 @mixin centered($horizontal: true, $vertical: true)
   position: absolute
@@ -203,21 +203,21 @@ describe('convertScssToSass.ts', () => {
     expect(result).to.equal(expected);
   });
 
-    it('comments after declaration', async () => {
-        const input = `
+  it("comments after declaration", async () => {
+    const input = `
 .container {
   border: none; // comment
 }
-`.replace('}', '}\n');
-        const expected = `
+`.replace("}", "}\n");
+    const expected = `
 .container
   border: none // comment
 `.trim();
-        const result = await convertScssToSass(input);
-        expect(result).to.equal(expected);
-    });
+    const result = await convertScssToSass(input);
+    expect(result).to.equal(expected);
+  });
 
-  it('full example', async () => {
+  it("full example", async () => {
     const input = `
 @import "../styles/imports";
 $col-primary: #f39900;
