@@ -32,6 +32,31 @@ describe("convertSassToScss.ts", () => {
     expect(result).to.equal(expected);
   });
 
+  it("keyframes with $variable", () => {
+    const input = `
+@keyframes test
+  $i: 1
+  0%
+    z-index: $i
+  100%
+    z-index: $i + 1
+`;
+    const expected = `
+
+@keyframes test {
+  $i: 1;
+  0% {
+    z-index: $i;
+  }
+  100% {
+    z-index: $i + 1;
+  }
+};
+`.trim();
+    const result = convertSassToScss(input);
+    expect(result).to.equal(expected);
+  });
+
   it("=mixin() definition", () => {
     const input = `
 =center_horizontal()
