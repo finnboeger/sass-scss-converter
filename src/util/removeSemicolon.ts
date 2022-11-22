@@ -1,4 +1,4 @@
-import {ASTNode} from "sast";
+import { ASTNode } from "sast";
 
 export function removeSemicolon(child: ASTNode) {
   if (child.type === "declarationDelimiter") {

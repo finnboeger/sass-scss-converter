@@ -1,4 +1,4 @@
-import {ASTLeafNode, ASTNode} from "sast";
+import { ASTLeafNode, ASTNode } from "sast";
 
 export function fixIndentation(node: ASTNode) {
   if (node.type === "block") {

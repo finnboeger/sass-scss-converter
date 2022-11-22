@@ -1,5 +1,5 @@
 // + to @include hack:
-import {ASTInternalNode, ASTNode} from "sast";
+import { ASTInternalNode, ASTNode } from "sast";
 
 export function sassMixinIncludeHack(child: ASTNode) {
   if (child.type === "include" && child.children) {
@@ -14,7 +14,7 @@ export function sassMixinIncludeHack(child: ASTNode) {
             value: "include",
           },
         ],
-      }
+      };
 
       // eslint-disable-next-line no-param-reassign
       child.children = [
@@ -26,7 +26,13 @@ export function sassMixinIncludeHack(child: ASTNode) {
         ...otherChildren,
       ];
     }
-  } else if (child.type === "selector" && child.children && child.children[0] && "value" in child.children[0] && child.children[0].value === "+") {
+  } else if (
+    child.type === "selector" &&
+    child.children &&
+    child.children[0] &&
+    "value" in child.children[0] &&
+    child.children[0].value === "+"
+  ) {
     // fix for top-level @include's:
 
     const [firstChild, ...otherChildren] = child.children;
@@ -42,7 +48,7 @@ export function sassMixinIncludeHack(child: ASTNode) {
           value: "include",
         },
       ],
-    }
+    };
 
     // eslint-disable-next-line no-param-reassign
     child.children = [

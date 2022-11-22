@@ -1,4 +1,4 @@
-import {ASTNode} from "sast";
+import { ASTNode } from "sast";
 
 export function interpolationHack(child: ASTNode) {
   if (child.type === "interpolation") {

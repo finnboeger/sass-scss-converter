@@ -1,5 +1,5 @@
 // = to @mixin hack:
-import {ASTInternalNode, ASTLeafNode, ASTNode} from "sast";
+import { ASTInternalNode, ASTLeafNode, ASTNode } from "sast";
 
 export function sassMixinDefinitionHack(child: ASTNode) {
   if (child.type === "mixin" && child.children) {
@@ -14,7 +14,7 @@ export function sassMixinDefinitionHack(child: ASTNode) {
             value: "mixin",
           },
         ],
-      }
+      };
 
       // eslint-disable-next-line no-param-reassign
       child.children = [
