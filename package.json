@@ -8,8 +8,8 @@
     "scripts": {
         "build": "tsc",
         "test": "npm run build && ts-mocha -p tsconfig.json tests/**/*.spec.ts",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "prettier --check \"src/**/*.ts\" && eslint --max-warnings 0 \"src/**/*.ts\"",
+        "format": "prettier --write \"**/*.ts\"",
+        "lint": "prettier --check \"**/*.ts\" && eslint --max-warnings 0 \"src/**/*.ts\"",
         "prepare": "npm run build",
         "prepublishOnly": "npm test && npm run lint"
     },
