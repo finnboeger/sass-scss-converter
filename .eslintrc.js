@@ -28,6 +28,7 @@ module.exports = {
         "no-eval": "error",
         "no-new-func": "error",
         "no-new-wrappers": "error",
+        "no-param-reassign": "error",
         "no-sequences": "error",
         "no-shadow": [
             "error",

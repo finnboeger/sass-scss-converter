@@ -95,7 +95,6 @@ describe("convertSassToScss.ts", () => {
   });
 
   it("trailing spaces", () => {
-    // eslint-disable-next-line no-template-curly-in-string
     const input = "$trs32: ease-in-out .32s \n$trs2: ease-in-out .2s  \n$basecolor: #25549 \n$activecolor: #1f477f";
     const expected = `
 $trs32: ease-in-out .32s;

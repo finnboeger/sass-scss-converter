@@ -9,7 +9,6 @@ export function addSemicolon(child: ASTNode): void {
   }
 
   if (child.type === "declarationDelimiter") {
-    // eslint-disable-next-line no-param-reassign
     child.value = child.value.includes(";") ? child.value : `;${child.value}`;
   }
 }

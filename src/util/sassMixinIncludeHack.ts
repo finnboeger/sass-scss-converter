@@ -16,7 +16,6 @@ export function sassMixinIncludeHack(child: ASTNode): void {
         ],
       };
 
-      // eslint-disable-next-line no-param-reassign
       child.children = [
         newFirstChild,
         {
@@ -30,7 +29,6 @@ export function sassMixinIncludeHack(child: ASTNode): void {
     // fix for top-level @include's:
 
     const [firstChild, ...otherChildren] = child.children;
-    // eslint-disable-next-line no-param-reassign
     child.type = "include";
 
     const newFirstChild: ASTInternalNode = {
@@ -44,7 +42,6 @@ export function sassMixinIncludeHack(child: ASTNode): void {
       ],
     };
 
-    // eslint-disable-next-line no-param-reassign
     child.children = [
       newFirstChild,
       {

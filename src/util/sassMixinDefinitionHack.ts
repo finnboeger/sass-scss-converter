@@ -16,7 +16,6 @@ export function sassMixinDefinitionHack(child: ASTNode): void {
         ],
       };
 
-      // eslint-disable-next-line no-param-reassign
       child.children = [
         newFirstChild,
         {
