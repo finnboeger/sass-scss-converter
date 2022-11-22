@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*.ts"
+      run: ./node_modules/.bin/prettier --check --loglevel warn {staged_files}
+    tslint:
+      glob: "src/*.ts"
+      exclude: "\\.d\\.ts$"
+      run: 'node --max-old-space-size=4096 ./node_modules/.bin/tslint -p tsconfig.json {staged_files}'
