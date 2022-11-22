@@ -1,6 +1,6 @@
 import { ASTNode } from "sast";
 
-export function interpolationHack(child: ASTNode) {
+export function interpolationHack(child: ASTNode): void {
   if (child.type === "interpolation") {
     child.children.unshift({
       type: "space",

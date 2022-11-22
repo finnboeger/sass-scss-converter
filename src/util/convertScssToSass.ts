@@ -1,16 +1,14 @@
-import { traverseAst } from "./traverseAst";
-import { removeSemicolon } from "./removeSemicolon";
-import { interpolationHack } from "./interpolationHack";
-import { formatScss } from "./formatScss";
-import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
+import { ASTNode, parse, stringify } from "sast";
+
 import { fixIndentation } from "./fixIndentation";
+import { formatScss } from "./formatScss";
+import { interpolationHack } from "./interpolationHack";
+import { removeSemicolon } from "./removeSemicolon";
+import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
+import { traverseAst } from "./traverseAst";
 
-let sast: any;
-
-export async function convertScssToSass(scssStr: string): Promise<string> {
-  sast = sast || (await import("sast"));
-
-  const tree = sast.parse(`${formatScss(scssStr.trim())}\n\n`, { syntax: "scss" });
+export function convertScssToSass(scssStr: string): string {
+  const tree = parse(`${formatScss(scssStr.trim())}\n\n`, { syntax: "scss" });
 
   // eslint-disable-next-line no-param-reassign
   traverseAst(tree, (node) => delete node.position);
@@ -18,11 +16,10 @@ export async function convertScssToSass(scssStr: string): Promise<string> {
   traverseAst(tree, removeSemicolon);
   traverseAst(tree, interpolationHack);
   traverseAst(tree, fixIndentation);
-  traverseAst(tree, (node: any) => {
+  traverseAst(tree, (node: ASTNode) => {
     // eslint-disable-next-line no-param-reassign
     node.type = node.type === "block" ? "_block" : node.type;
   });
 
-  const stringifiedTree = removeTrailingSpacesForEachLine(sast.stringify(tree).trim());
-  return stringifiedTree;
+  return removeTrailingSpacesForEachLine(stringify(tree).trim());
 }

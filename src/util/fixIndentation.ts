@@ -1,10 +1,10 @@
 import { ASTLeafNode, ASTNode } from "sast";
 
-export function fixIndentation(node: ASTNode) {
+export function fixIndentation(node: ASTNode): void {
   if (node.type === "block") {
-    const spaces = node.children.filter((child: any) => child.type === "space") as ASTLeafNode[];
+    const spaces = node.children.filter((child: ASTNode) => child.type === "space") as ASTLeafNode[];
     const indentationForThisBlock = spaces[0].value.replaceAll("\n", "");
-    spaces.forEach((child: any) => {
+    spaces.forEach((child: ASTLeafNode) => {
       // eslint-disable-next-line no-param-reassign
       child.value = child.value.replaceAll(" ", "") + indentationForThisBlock;
       if (!child.value.startsWith("\n")) {

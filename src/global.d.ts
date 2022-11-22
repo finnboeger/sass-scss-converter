@@ -24,6 +24,7 @@ declare module "sast" {
   interface ASTInternalNode extends ASTBaseNode {
     // TODO: List is not exhaustive
     type:
+      | "_block"
       | "arguments"
       | "atkeyword"
       | "atrule"
@@ -70,4 +71,7 @@ declare module "sast" {
   const unistify: (tree: ASTNode) => Node<any>;
 }
 
-declare module "scssfmt";
+declare module "scssfmt" {
+  const scssfmt: (css: string, options?: { syntax: string }) => string;
+  export = scssfmt;
+}

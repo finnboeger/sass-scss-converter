@@ -1,6 +1,6 @@
 import { ASTNode } from "sast";
 
-export function addSemicolon(child: ASTNode) {
+export function addSemicolon(child: ASTNode): void {
   if (child.type === "atrule") {
     child.children.push({
       type: "declarationDelimiter",

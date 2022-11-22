@@ -2,23 +2,23 @@ import { expect } from "chai";
 import { convertSassToScss } from "../../src";
 
 describe("convertSassToScss.ts", () => {
-  it("@import - should add semicolon", async () => {
+  it("@import - should add semicolon", () => {
     const input = '@import "../styles/imports"';
     const expected = '@import "../styles/imports";';
 
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("$variable definition - should add semicolon", async () => {
+  it("$variable definition - should add semicolon", () => {
     const input = "$col-primary: #f39900";
     const expected = "$col-primary: #f39900;";
 
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("$variable usage", async () => {
+  it("$variable usage", () => {
     const input = `
 .item
   color: $col-primary
@@ -28,11 +28,11 @@ describe("convertSassToScss.ts", () => {
   color: $col-primary;
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("=mixin() definition", async () => {
+  it("=mixin() definition", () => {
     const input = `
 =center_horizontal()
   display: none
@@ -42,11 +42,11 @@ describe("convertSassToScss.ts", () => {
   display: none;
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("=mixin() usage", async () => {
+  it("=mixin() usage", () => {
     const input = `
 .container
   +center_horizontal()
@@ -56,11 +56,11 @@ describe("convertSassToScss.ts", () => {
   @include center_horizontal();
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("top-level @include", async () => {
+  it("top-level @include", () => {
     const input = `
 +dark
   .card
@@ -73,11 +73,11 @@ describe("convertSassToScss.ts", () => {
   }
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("top-level @include + 2nd-level @include", async () => {
+  it("top-level @include + 2nd-level @include", () => {
     const input = `
 +dark
   +card
@@ -90,11 +90,11 @@ describe("convertSassToScss.ts", () => {
   }
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("trailing spaces", async () => {
+  it("trailing spaces", () => {
     // eslint-disable-next-line no-template-curly-in-string
     const input = "$trs32: ease-in-out .32s \n$trs2: ease-in-out .2s  \n$basecolor: #25549 \n$activecolor: #1f477f";
     const expected = `
@@ -103,11 +103,11 @@ $trs2: ease-in-out .2s;
 $basecolor: #25549;
 $activecolor: #1f477f;
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("interpolation usage", async () => {
+  it("interpolation usage", () => {
     const input = `
 @mixin corner-icon($name)
   .icon-#{$name}
@@ -120,11 +120,11 @@ $activecolor: #1f477f;
   }
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("multiple indention levels", async () => {
+  it("multiple indention levels", () => {
     const input = `
 .container
   border: none
@@ -139,11 +139,11 @@ $activecolor: #1f477f;
   }
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("comments after declaration", async () => {
+  it("comments after declaration", () => {
     const input = `
 .container
   border: none // comment
@@ -155,11 +155,11 @@ $activecolor: #1f477f;
   background: none;
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 
-  it("full example", async () => {
+  it("full example", () => {
     const input = `
 @import "../styles/imports"
 $col-primary: #f39900
@@ -187,7 +187,7 @@ $col-primary: #f39900;
   }
 }
 `.trim();
-    const result = await convertSassToScss(input);
+    const result = convertSassToScss(input);
     expect(result).to.equal(expected);
   });
 });

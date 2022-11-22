@@ -1,8 +1,8 @@
 // = to @mixin hack:
-import { ASTInternalNode, ASTLeafNode, ASTNode } from "sast";
+import { ASTInternalNode, ASTNode } from "sast";
 
-export function sassMixinDefinitionHack(child: ASTNode) {
-  if (child.type === "mixin" && child.children) {
+export function sassMixinDefinitionHack(child: ASTNode): void {
+  if (child.type === "mixin") {
     const [firstChild, ...otherChildren] = child.children;
     if ("value" in firstChild && firstChild.value === "=") {
       const newFirstChild: ASTInternalNode = {
