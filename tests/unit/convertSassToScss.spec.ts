@@ -142,6 +142,20 @@ $activecolor: #1f477f;
     expect(result).to.equal(expected);
   });
 
+  it("block with inline comment", () => {
+    const input = `
+.container // comment
+  border: none
+`;
+    const expected = `
+.container { // comment
+  border: none;
+}
+`.trim();
+    const result = convertSassToScss(input);
+    expect(result).to.equal(expected);
+  });
+
   it("comments after declaration", () => {
     const input = `
 .container
@@ -170,6 +184,8 @@ $col-primary: #f39900
   border: 1px solid darken($col-background, 10)
   .item
     color: $col-primary
+    +center_horizontal() // comment
+    padding: 20px
 `;
     const expected = `
 @import "../styles/imports";
@@ -183,6 +199,8 @@ $col-primary: #f39900;
   border: 1px solid darken($col-background, 10);
   .item {
     color: $col-primary;
+    @include center_horizontal(); // comment
+    padding: 20px;
   }
 }
 `.trim();
