@@ -143,6 +143,22 @@ $activecolor: #1f477f;
     expect(result).to.equal(expected);
   });
 
+  it('comments after declaration', async () => {
+      const input = `
+.container
+  border: none // comment
+  background: none
+`;
+      const expected = `
+.container {
+  border: none; // comment
+  background: none;
+}
+`.trim();
+      const result = await convertSassToScss(input);
+      expect(result).to.equal(expected);
+  });
+
   it('full example', async () => {
     const input = `
 @import "../styles/imports"

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { convertScssToSass } from '../../src';
+import {convertSassToScss, convertScssToSass} from '../../src';
 
 describe('convertScssToSass.ts', () => {
   it('@import - should remove semicolon', async () => {
@@ -202,6 +202,20 @@ describe('convertScssToSass.ts', () => {
     const result = await convertScssToSass(input);
     expect(result).to.equal(expected);
   });
+
+    it('comments after declaration', async () => {
+        const input = `
+.container {
+  border: none; // comment
+}
+`.replace('}', '}\n');
+        const expected = `
+.container
+  border: none // comment
+`.trim();
+        const result = await convertScssToSass(input);
+        expect(result).to.equal(expected);
+    });
 
   it('full example', async () => {
     const input = `
