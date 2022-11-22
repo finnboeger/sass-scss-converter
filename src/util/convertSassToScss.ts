@@ -5,21 +5,18 @@ import { sassMixinIncludeHack } from "./sassMixinIncludeHack";
 import { sassMixinDefinitionHack } from "./sassMixinDefinitionHack";
 import { interpolationHack } from "./interpolationHack";
 import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
-
-let sast: any;
+import { parse, stringify } from "sast";
 
 export async function convertSassToScss(sassStr: string): Promise<string> {
-  sast = sast || (await import("sast"));
-
   const cleanedUpSassStr = removeTrailingSpacesForEachLine(sassStr);
-  const ast = sast.parse(`${cleanedUpSassStr}\n\n`, { syntax: "sass" });
+  const ast = parse(`${cleanedUpSassStr}\n\n`, { syntax: "sass" });
 
   traverseAst(ast, sassMixinIncludeHack);
   traverseAst(ast, sassMixinDefinitionHack);
   traverseAst(ast, addSemicolon);
   traverseAst(ast, interpolationHack);
 
-  const stringifiedTree = sast.stringify(ast, { syntax: "scss" });
+  const stringifiedTree = stringify(ast);
 
   return formatScss(stringifiedTree).trim().replace(/\r/g, "");
 }
