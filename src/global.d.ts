@@ -22,43 +22,81 @@ declare module "sast" {
   }
 
   interface ASTInternalNode extends ASTBaseNode {
-    // TODO: List is not exhaustive
+    // TODO: some node types are undocumented.
+    //       source: https://github.com/tonyganch/gonzales-pe/blob/dev/docs/node-types.md
     type:
       | "_block"
       | "arguments"
       | "atkeyword"
       | "atrule"
+      | "attributeFlags"
+      | "attributeName"
+      | "attributeSelector"
+      | "attributeValue"
       | "block"
+      | "brackets"
       | "class"
+      | "condition"
+      | "conditionalStatement"
       | "declaration"
       | "dimension"
+      | "extend"
       | "function"
+      | "id"
       | "include"
+      | "interpolatedVariable"
       | "interpolation"
+      | "keyframesSelector"
+      | "loop"
       | "mixin"
+      | "namePrefix"
+      | "namespacePrefix"
+      | "parentheses"
       | "percentage"
+      | "placeholder"
       | "property"
+      | "pseudoClass"
+      | "pseudoElement"
       | "ruleset"
       | "selector"
       | "stylesheet"
+      | "typeSelector"
+      | "unicodeRange"
+      | "universalSelector"
+      | "uri"
       | "value"
-      | "variable";
+      | "variable"
+      | "variablesList";
     children: (ASTLeafNode | ASTInternalNode)[];
   }
 
   interface ASTLeafNode extends ASTBaseNode {
-    // TODO: List is not exhaustive
+    // TODO: some node types are undocumented.
+    //       source: https://github.com/tonyganch/gonzales-pe/blob/dev/docs/node-types.md
     type:
+      | "attributeMatch"
       | "color"
+      | "combinator"
       | "declarationDelimiter"
+      | "default"
       | "delimiter"
+      | "escapedString"
+      | "expression"
+      | "global"
       | "ident"
+      | "important"
+      | "multilineComment"
+      | "namespaceSeparator"
       | "number"
       | "operator"
+      | "optional"
+      | "parentSelector"
+      | "parentSelectorExtension"
       | "propertyDelimiter"
       | "singlelineComment"
       | "space"
-      | "string";
+      | "string"
+      | "urange";
     value: string;
   }
 
