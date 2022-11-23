@@ -10,6 +10,25 @@ describe("convertSassToScss.ts", () => {
     expect(result).to.equal(expected);
   });
 
+  it("modules with @use and namespace", () => {
+    const input = `
+@use 'module'
+
+.container
+  background: module.$background-color
+`;
+    const expected = `
+@use 'module'
+
+.container {
+  background: module.$background-color;
+}
+`;
+
+    const result = convertSassToScss(input);
+    expect(result).to.equal(expected);
+  });
+
   it("$variable definition - should add semicolon", () => {
     const input = "$col-primary: #f39900";
     const expected = "$col-primary: #f39900;";
