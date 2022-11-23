@@ -1,12 +1,12 @@
 import { parse, stringify } from "sast";
 
 import { addSemicolon } from "./addSemicolon";
+import { blockHack } from "./blockHack";
 import { formatScss } from "./formatScss";
 import { interpolationHack } from "./interpolationHack";
 import { removeTrailingSpacesForEachLine } from "./removeTrailingSpacesForEachLine";
 import { sassMixinDefinitionHack } from "./sassMixinDefinitionHack";
 import { sassMixinIncludeHack } from "./sassMixinIncludeHack";
-import { singleLineCommentHack } from "./singleLineCommentHack";
 import { traverseAst } from "./traverseAst";
 
 export function convertSassToScss(sassStr: string): string {
@@ -16,7 +16,7 @@ export function convertSassToScss(sassStr: string): string {
   traverseAst(ast, sassMixinIncludeHack);
   traverseAst(ast, sassMixinDefinitionHack);
   traverseAst(ast, addSemicolon);
-  traverseAst(ast, singleLineCommentHack);
+  traverseAst(ast, blockHack);
   traverseAst(ast, interpolationHack);
 
   const stringifiedTree = stringify(ast);

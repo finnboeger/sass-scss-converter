@@ -200,6 +200,22 @@ $activecolor: #1f477f;
     expect(result).to.equal(expected);
   });
 
+  it("block with singleline comment on first line", () => {
+    const input = `
+.container
+  // comment
+  border: none
+`;
+    const expected = `
+.container {
+  // comment
+  border: none;
+}
+`.trim();
+    const result = convertSassToScss(input);
+    expect(result).to.equal(expected);
+  });
+
   it("comments after declaration", () => {
     const input = `
 .container
